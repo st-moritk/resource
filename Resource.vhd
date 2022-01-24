@@ -473,15 +473,15 @@ end rtl;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity LogicalLeftShifter is
+entity LogicalRightShifter is
   port (
     a     : in  std_logic_vector(7 downto 0);
     y     : out std_logic_vector(7 downto 0);
     shamt : in  std_logic_vector(2 downto 0)
   );
-end LogicalLeftShifter;
+end LogicalRightShifter;
 
-architecture rtl of LogicalLeftShifter is
+architecture rtl of LogicalRightShifter is
 component Mux8x01
   port (
     a0  : in  std_logic;
@@ -617,15 +617,15 @@ end rtl;
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity LogicalLeftShifter is
+entity ArithmeticalLeftShifter is
   port (
     a     : in  std_logic_vector(7 downto 0);
     y     : out std_logic_vector(7 downto 0);
     shamt : in  std_logic_vector(2 downto 0)
   );
-end LogicalLeftShifter;
+end ArithmeticalLeftShifter;
 
-architecture rtl of LogicalLeftShifter is
+architecture rtl of ArithmeticalLeftShifter is
 component Mux8x01
   port (
     a0  : in  std_logic;
@@ -755,21 +755,21 @@ begin
   );
 end rtl;
 --------------------------------
--- Logical Right Shifter
+-- Arithmetical Right Shifter
 --------------------------------
 
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity LogicalLeftShifter is
+entity ArithmeticalRightShifter is
   port (
     a     : in  std_logic_vector(7 downto 0);
     y     : out std_logic_vector(7 downto 0);
     shamt : in  std_logic_vector(2 downto 0)
   );
-end LogicalLeftShifter;
+end ArithmeticalRightShifter;
 
-architecture rtl of LogicalLeftShifter is
+architecture rtl of ArithmeticalRightShifter is
 component Mux8x01
   port (
     a0  : in  std_logic;
