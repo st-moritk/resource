@@ -465,8 +465,439 @@ begin
     sel => shamt
   );
 end rtl;
-     
 
+--------------------------------
+-- Logical Right Shifter
+--------------------------------
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity LogicalLeftShifter is
+  port (
+    a     : in  std_logic_vector(7 downto 0);
+    y     : out std_logic_vector(7 downto 0);
+    shamt : in  std_logic_vector(2 downto 0)
+  );
+end LogicalLeftShifter;
+
+architecture rtl of LogicalLeftShifter is
+component Mux8x01
+  port (
+    a0  : in  std_logic;
+    a1  : in  std_logic;
+    a2  : in  std_logic;
+    a3  : in  std_logic;
+    a4  : in  std_logic;
+    a5  : in  std_logic;
+    a6  : in  std_logic;
+    a7  : in  std_logic;
+    sel : in  std_logic_vector(2 downto 0);
+    q   : out std_logic
+  );
+end component;
+signal carry : std_logic_vector(8 downto 0);
+begin
+  mux7 : Mux8x01
+  port map(
+    a0 => a(7),
+    a1 => '0',
+    a2 => '0',
+    a3 => '0',
+    a4 => '0',
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(7),
+    sel => shamt
+  );
+
+  mux6 : Mux8x01
+  port map(
+    a0 => a(6),
+    a1 => a(7),
+    a2 => '0',
+    a3 => '0',
+    a4 => '0',
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(6),
+    sel => shamt
+  );
+
+  mux5 : Mux8x01
+  port map(
+    a0 => a(5),
+    a1 => a(6),
+    a2 => a(7),
+    a3 => '0',
+    a4 => '0',
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(5),
+    sel => shamt
+  );
+
+  mux4 : Mux8x01
+  port map(
+    a0 => a(4),
+    a1 => a(5),
+    a2 => a(6),
+    a3 => a(7),
+    a4 => '0',
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(4),
+    sel => shamt
+  );
+
+  mux3 : Mux8x01
+  port map(
+    a0 => a(3),
+    a1 => a(4),
+    a2 => a(5),
+    a3 => a(6),
+    a4 => a(7),
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(3),
+    sel => shamt
+  );
+
+  mux2 : Mux8x01
+  port map(
+    a0 => a(2),
+    a1 => a(3),
+    a2 => a(4),
+    a3 => a(5),
+    a4 => a(6),
+    a5 => a(7),
+    a6 => '0',
+    a7 => '0',
+    q => y(2),
+    sel => shamt
+  );
+
+  mux1 : Mux8x01
+  port map(
+    a0 => a(1),
+    a1 => a(2),
+    a2 => a(3),
+    a3 => a(4),
+    a4 => a(5),
+    a5 => a(6),
+    a6 => a(7),
+    a7 => '0',
+    q => y(1),
+    sel => shamt
+  );
+
+  mux0 : Mux8x01
+  port map(
+    a0 => a(0),
+    a1 => a(1),
+    a2 => a(2),
+    a3 => a(3),
+    a4 => a(4),
+    a5 => a(5),
+    a6 => a(6),
+    a7 => a(7),
+    q => y(0),
+    sel => shamt
+  );
+end rtl;
+--------------------------------
+-- Arithmetical Left Shifter
+--------------------------------
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity LogicalLeftShifter is
+  port (
+    a     : in  std_logic_vector(7 downto 0);
+    y     : out std_logic_vector(7 downto 0);
+    shamt : in  std_logic_vector(2 downto 0)
+  );
+end LogicalLeftShifter;
+
+architecture rtl of LogicalLeftShifter is
+component Mux8x01
+  port (
+    a0  : in  std_logic;
+    a1  : in  std_logic;
+    a2  : in  std_logic;
+    a3  : in  std_logic;
+    a4  : in  std_logic;
+    a5  : in  std_logic;
+    a6  : in  std_logic;
+    a7  : in  std_logic;
+    sel : in  std_logic_vector(2 downto 0);
+    q   : out std_logic
+  );
+end component;
+signal carry : std_logic_vector(8 downto 0);
+begin
+  mux7 : Mux8x01
+  port map(
+    a0 => a(7),
+    a1 => a(7),
+    a2 => a(7),
+    a3 => a(7),
+    a4 => a(7),
+    a5 => a(7),
+    a6 => a(7),
+    a7 => a(7),
+    q => y(7),
+    sel => shamt
+  );
+
+  mux6 : Mux8x01
+  port map(
+    a0 => a(6),
+    a1 => a(5),
+    a2 => a(4),
+    a3 => a(3),
+    a4 => a(2),
+    a5 => a(1),
+    a6 => a(0),
+    a7 => '0',
+    q => y(6),
+    sel => shamt
+  );
+
+  mux5 : Mux8x01
+  port map(
+    a0 => a(5),
+    a1 => a(4),
+    a2 => a(3),
+    a3 => a(2),
+    a4 => a(1),
+    a5 => a(0),
+    a6 => '0',
+    a7 => '0',
+    q => y(5),
+    sel => shamt
+  );
+
+  mux4 : Mux8x01
+  port map(
+    a0 => a(4),
+    a1 => a(3),
+    a2 => a(2),
+    a3 => a(1),
+    a4 => a(0),
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(4),
+    sel => shamt
+  );
+
+  mux3 : Mux8x01
+  port map(
+    a0 => a(3),
+    a1 => a(2),
+    a2 => a(1),
+    a3 => a(0),
+    a4 => '0',
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(3),
+    sel => shamt
+  );
+
+  mux2 : Mux8x01
+  port map(
+    a0 => a(2),
+    a1 => a(1),
+    a2 => a(0),
+    a3 => '0',
+    a4 => '0',
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(2),
+    sel => shamt
+  );
+
+  mux1 : Mux8x01
+  port map(
+    a0 => a(1),
+    a1 => a(0),
+    a2 => '0',
+    a3 => '0',
+    a4 => '0',
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(1),
+    sel => shamt
+  );
+
+  mux0 : Mux8x01
+  port map(
+    a0 => a(0),
+    a1 => '0',
+    a2 => '0',
+    a3 => '0',
+    a4 => '0',
+    a5 => '0',
+    a6 => '0',
+    a7 => '0',
+    q => y(0),
+    sel => shamt
+  );
+end rtl;
+--------------------------------
+-- Logical Right Shifter
+--------------------------------
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity LogicalLeftShifter is
+  port (
+    a     : in  std_logic_vector(7 downto 0);
+    y     : out std_logic_vector(7 downto 0);
+    shamt : in  std_logic_vector(2 downto 0)
+  );
+end LogicalLeftShifter;
+
+architecture rtl of LogicalLeftShifter is
+component Mux8x01
+  port (
+    a0  : in  std_logic;
+    a1  : in  std_logic;
+    a2  : in  std_logic;
+    a3  : in  std_logic;
+    a4  : in  std_logic;
+    a5  : in  std_logic;
+    a6  : in  std_logic;
+    a7  : in  std_logic;
+    sel : in  std_logic_vector(2 downto 0);
+    q   : out std_logic
+  );
+end component;
+signal carry : std_logic_vector(8 downto 0);
+begin
+  mux7 : Mux8x01
+  port map(
+    a0 => a(7),
+    a1 => a(7),
+    a2 => a(7),
+    a3 => a(7),
+    a4 => a(7),
+    a5 => a(7),
+    a6 => a(7),
+    a7 => a(7),
+    q => y(7),
+    sel => shamt
+  );
+
+  mux6 : Mux8x01
+  port map(
+    a0 => a(6),
+    a1 => a(7),
+    a2 => a(7),
+    a3 => a(7),
+    a4 => a(7),
+    a5 => a(7),
+    a6 => a(7),
+    a7 => a(7),
+    q => y(6),
+    sel => shamt
+  );
+
+  mux5 : Mux8x01
+  port map(
+    a0 => a(5),
+    a1 => a(6),
+    a2 => a(7),
+    a3 => a(7),
+    a4 => a(7),
+    a5 => a(7),
+    a6 => a(7),
+    a7 => a(7),
+    q => y(5),
+    sel => shamt
+  );
+
+  mux4 : Mux8x01
+  port map(
+    a0 => a(4),
+    a1 => a(5),
+    a2 => a(6),
+    a3 => a(7),
+    a4 => a(7),
+    a5 => a(7),
+    a6 => a(7),
+    a7 => a(7),
+    q => y(4),
+    sel => shamt
+  );
+
+  mux3 : Mux8x01
+  port map(
+    a0 => a(3),
+    a1 => a(4),
+    a2 => a(5),
+    a3 => a(6),
+    a4 => a(7),
+    a5 => a(7),
+    a6 => a(7),
+    a7 => a(7),
+    q => y(3),
+    sel => shamt
+  );
+
+  mux2 : Mux8x01
+  port map(
+    a0 => a(2),
+    a1 => a(3),
+    a2 => a(4),
+    a3 => a(5),
+    a4 => a(6),
+    a5 => a(7),
+    a6 => a(7),
+    a7 => a(7),
+    q => y(2),
+    sel => shamt
+  );
+
+  mux1 : Mux8x01
+  port map(
+    a0 => a(1),
+    a1 => a(2),
+    a2 => a(3),
+    a3 => a(4),
+    a4 => a(5),
+    a5 => a(6),
+    a6 => a(7),
+    a7 => a(7),
+    q => y(1),
+    sel => shamt
+  );
+
+  mux0 : Mux8x01
+  port map(
+    a0 => a(0),
+    a1 => a(1),
+    a2 => a(2),
+    a3 => a(3),
+    a4 => a(4),
+    a5 => a(5),
+    a6 => a(6),
+    a7 => a(7),
+    q => y(0),
+    sel => shamt
+  );
+end rtl;
 --------------------------------
 -- Full Adder
 --------------------------------
